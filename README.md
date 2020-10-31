@@ -12,7 +12,7 @@ There are two methods to run and test the website:
    
    ii) ``git clone https://github.com/{your_username}/bestro.git``
    
-   iii) Create a new virtual environment on your local machine by running ``virtualenv myenv --python=python3.6
+   iii) Create a new virtual environment on your local machine by running ``virtualenv myenv --python=python3.6``
    
    iv) Activate the environment by running ``source myenv/bin/activate``
    
