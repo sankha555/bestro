@@ -51,6 +51,7 @@
                             <li><a href="{% url 'staff_profile' %}">Hi, {{ user.staff.name }}</a></li>
                             <li><a href="{% url 'logout' %}">Logout</a></li>
                         {% else %}
+                            <li><a href="{% url 'past_transactions' %}">My Orders</a></li>
                             <li><a href="{% url 'create_order' %}">Place Order</a></li>
                             <li><a href="{% url 'customer_profile' %}">Hi, {{ user.customer.name }}</a></li>
                             <li><a href="{% url 'logout' %}">Logout</a></li>
