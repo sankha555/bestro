@@ -1,4 +1,4 @@
-# bestro
+# Bestro
 Recruitment task for SSMS Tech Team
 
 This repository contains the source code for "Bestro", and online restaurant which specializes in door-to-door deliveries. The website is made using Django, HTML, CSS and JS. 
@@ -8,8 +8,8 @@ There are two methods to run and test the website:
 
 1. Using the live website on http://bestro.pythonanywhere.com  - click on the link to head over to the webite and start using it
 2. Running it on localhost by cloning the repo to your local machine :
-      i) Fork the repo
-      ii) ``git clone https://github.com/{your_username}/bestro.git``
+      i) Fork the repo\n
+      ii) ``git clone https://github.com/{your_username}/bestro.git``\n
       iii) Create a new virtual environment on your local machine by running ``virtualenv myenv --python=python3.6
       iv) Activate the environment by running ``source myenv/bin/activate``
       v) ``cd`` into the project folder "bestro"
