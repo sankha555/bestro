@@ -26,6 +26,7 @@
                     <div class="right-info">
                         <h4>Order Summary</h4>
                         <p> Order # {{ order.id }} </p><br>
+                        <p>Placed on {{ order.date_placed.date }}</p>
                             
                                 <ul>
                                     {% for oitem in items %}
@@ -39,6 +40,8 @@
                                 <br><br>
                                 {% if not order.delivered %}
                                 <i>Expected to be delivered in <b>{{ order.expected_time }}</b> minutes!</i>
+                                {% else %}
+                                <i>Delivered!</i>
                                 {% endif %}
 
                         <br><br><p>Thanks for ordering with us! Hope You enjoy your meal!</p>
