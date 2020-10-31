@@ -1,0 +1,46 @@
+{% extends "orders/base.htm" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+
+    <!--- ====  AUTOFILL SCRIPTS ==== -->
+    <script>
+        function fillUsername() {
+                document.getElementById('username').value = document.getElementById('email').value;    
+        }
+
+        function fillPassword() {
+                document.getElementById('password').value = document.getElementById('password1').value;    
+        }
+    </script>
+
+    <section id="book-table">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-md-offset-2 col-sm-12">
+                    <div class="left-image">
+                        <img src="{% static 'orders/img/book_left_image.jpg' %}"" alt="">
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <div class="right-info" style="overflow: scroll;">
+                        <h4>New Offer</h4>
+                        <p> This offer will be notified to customers through email </p><br>
+                            
+                            <form method="POST" action="" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                
+                                {{ form|crispy }}
+
+                                <button type="submit" class="btn">Publish</button>
+                            </form>
+
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+{% endblock content %}

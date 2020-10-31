@@ -1,0 +1,88 @@
+{% extends "orders/base.htm" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+
+    <section class="cook-delecious">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-md-offset-1">
+                    <div class="first-image">
+                        <img src="{% static 'orders/img/cook_01.jpg' %}" alt="">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="cook-content">
+                        <h4>We cook delicious</h4>
+                        <div class="contact-content">
+                            <span>You can call us on:</span>
+                            <h6>+ 1234 567 8910</h6>
+                    
+                        </div>
+
+                        <br><br>
+
+                        <row>
+                            <div class="primary-white-button" style="display: inline;">
+                                <a href="{% url 'create_order' %}" class="scroll-link" data-id="book-table">Order Now</a>
+                            </div>
+                            &nbsp
+                            <div class="primary-white-button" style="display: inline;">
+                                <a href="{% url 'past_transactions' %}" class="scroll-link" data-id="book-table">Past Orders</a>
+                            </div>
+                        </row>
+                        
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="second-image">
+                        <img src="{% static 'orders/img/cook_02.jpg' %}" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section class="services">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="service-item">
+                        <a href="menu.html">
+                        <img src="{% static 'orders/img/cook_breakfast.png' %}" alt="Breakfast">
+                        <h4>Appetizers</h4>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="service-item">
+                        <a href="menu.html">
+                        <img src="{% static 'orders/img/cook_lunch.png' %}" alt="Lunch">
+                        <h4>Sizzlers</h4>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="service-item">
+                        <a href="menu.html">
+                        <img src="{% static 'orders/img/cook_dinner.png' %}" alt="Dinner">
+                        <h4>Pasta & Pizza</h4>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="service-item">
+                        <a href="menu.html">
+                        <img src="{% static 'orders/img/cook_dessert.png' %}" alt="Desserts">
+                        <h4>Desserts</h4>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+{% endblock content %}
