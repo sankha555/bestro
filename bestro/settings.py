@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 import os
+import django_heroku
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -26,7 +27,7 @@ SECRET_KEY = 'ug=p*xv7f*58qqsmfmn2$%^jz++i*16jyx#hy7zj8dt2bujfr+'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
 
 
 # Application definition
@@ -195,3 +196,5 @@ ACCOUNT_FORMS = {
     'reset_password_from_key': 'allauth.account.forms.ResetPasswordKeyForm',
     'disconnect': 'allauth.socialaccount.forms.DisconnectForm',
 }
+
+django_heroku.settings(locals())
