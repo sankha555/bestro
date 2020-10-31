@@ -8,15 +8,23 @@ There are two methods to run and test the website:
 
 1. Using the live website on http://bestro.pythonanywhere.com  - click on the link to head over to the webite and start using it
 2. Running it on localhost by cloning the repo to your local machine :
-      i) Fork the repo\n
-      ii) ``git clone https://github.com/{your_username}/bestro.git``\n
-      iii) Create a new virtual environment on your local machine by running ``virtualenv myenv --python=python3.6
-      iv) Activate the environment by running ``source myenv/bin/activate``
-      v) ``cd`` into the project folder "bestro"
-      vi) Run ``pip install -r requirements.txt`` to install all project dependencies
-      vii) Run ``python manage.py makemigrations`` then ``python manage.py migrate`` to update the database.
-      viii) Run ``python manage.py runserver`` to launch the server.
-      ix) Open up ```http://127.0.0.1:8000``` on your browser to open the website.
+   i) Fork the repo
+   
+   ii) ``git clone https://github.com/{your_username}/bestro.git``
+   
+   iii) Create a new virtual environment on your local machine by running ``virtualenv myenv --python=python3.6
+   
+   iv) Activate the environment by running ``source myenv/bin/activate``
+   
+   v) ``cd`` into the project folder "bestro"
+   
+   vi) Run ``pip install -r requirements.txt`` to install all project dependencies
+   
+   vii) Run ``python manage.py makemigrations`` then ``python manage.py migrate`` to update the database.
+   
+   viii) Run ``python manage.py runserver`` to launch the server.
+   
+   ix) Open up ```http://127.0.0.1:8000``` on your browser to open the website.
             
            
 
