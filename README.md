@@ -3,11 +3,22 @@ Recruitment task for SSMS Tech Team
 
 This repository contains the source code for "Bestro", and online restaurant which specializes in door-to-door deliveries. The website is made using Django, HTML, CSS and JS. 
 
+A few salient features of the website:
+1. Google sign-in for customers (bye bye "Forgot Your Password")
+2. Updation of stocks after each order is placed
+3. Option for customer feedback and live updation of item ratings based on this feedback
+4. Asychrounous item filters
+5. Expected Delivery time calculated and shown on the basis of number of active orders, so it's authentic and different for each new order 
+6. Email Notifications about new offers
+7. Option for staff to view daily sales in the form of downloadable spreadsheets
+8. And many more... read below to discover them all!
+
 ## Running the Website:
 There are two methods to run and test the website:
 
 1. Using the live website on http://bestro.pythonanywhere.com  - click on the link to head over to the webite and start using it
 2. Running it on localhost by cloning the repo to your local machine :
+
    i) Fork the repo
    
    ii) ``git clone https://github.com/{your_username}/bestro.git``
@@ -87,7 +98,7 @@ Other Admin Controls:
   
 ### 2. Viewing Sales:
  
- To see category wise page items for each day, head to the Staff Dashboard (Click on your Name in the navbar and click on Update profile in the Profile page to head to go to the staff dashboard). Click on View Sales button.
+ To see category wise page items for each day, head to the Staff Dashboard (Click on your Name in the navbar and click on Update profile in the Profile page to go to the staff dashboard). Click on View Sales button.
  
  A spreadsheet file containing the day's sales will be downloaded to your local machine. 
  
@@ -95,9 +106,11 @@ Other Admin Controls:
 
   The restaurant can create new offers and notify the customers about the same through email. To create a new offer, click on New Offer in the nav bar. Write about the offer in the form presented and click on Publish. The news about the offer will be mailed to all customers via email. 
   
+
+  
  The backend of the website has been created entirely by me. I have taken templates for the frontend views from "templatemo". Necessary changes have been made by me  to these templates at appropriate places. 
   
 Suggestions and feedback about my work is welcome and I would love to hear about it for future improvements! 
 
-- Sankha Das
+---- Sankha Das
   
