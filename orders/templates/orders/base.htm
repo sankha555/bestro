@@ -1,0 +1,153 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+        <title>Bestro - The Online Bistro</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+        <link rel="stylesheet" href="{% static 'orders/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'orders/css/bootstrap-theme.min.css' %}">
+        <link rel="stylesheet" href="{% static 'orders/css/fontAwesome.css' %}">
+        <link rel="stylesheet" href="{% static 'orders/css/hero-slider.css' %}">
+        <link rel="stylesheet" href="{% static 'orders/css/owl-carousel.css' %}">
+        <link rel="stylesheet" href="{% static 'orders/css/templatemo-style.css' %}">
+
+        <link href="https://fonts.googleapis.com/css?family=Spectral:200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+
+        <script src="{% static 'orders/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js' %}"></script>
+    </head>
+
+<body>
+    <div class="header">
+        <div class="container">
+            <a href="#" class="navbar-brand scroll-top">Bestro</a>
+            <nav class="navbar navbar-inverse" role="navigation">
+                <div class="navbar-header">
+                    <button type="button" id="nav-toggle" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+
+                <!--/.navbar-header-->
+                <div id="main-nav" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="{% url 'index' %}">Home</a></li>
+                        <li><a href="{% url 'menu' %}">Menu</a></li>
+                        {% if not user.is_authenticated %}
+                            <li><a href="{% url 'register_customer' %}">Sign Up</a></li>
+                            <li><a href="{% url 'login' %}">Login</a></li>
+                        {% elif user.is_superuser %}
+                            <li><a href="{% url 'notify_offers' %}">New Offer</a></li>
+                            <li><a href="{% url 'register_staff' %}">Register Employee</a></li>
+                            <li><a href="{% url 'staff_profile' %}">Hi, {{ user.staff.name }}</a></li>
+                            <li><a href="{% url 'logout' %}">Logout</a></li>
+                        {% else %}
+                            <li><a href="{% url 'create_order' %}">Place Order</a></li>
+                            <li><a href="{% url 'customer_profile' %}">Hi, {{ user.customer.name }}</a></li>
+                            <li><a href="{% url 'logout' %}">Logout</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+                <!--/.navbar-collapse-->
+
+            </nav>
+            <!--/.navbar-->
+        </div>
+        <!--/.container-->
+    </div>
+    <!--/.header-->
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}" style="width: 60vw; margin-left: 20vw; position: fixed; z-index: 100; text-align: center">
+                <p style="color: green; font-size: medium; display: inline; margin: auto;">{{ message }} <span class="closebtn" style="display: inline; margin-left: auto;" onclick="this.parentElement.parentElement.style.display='none';">&times;</span></p>        
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    {% block content %}
+
+    {% endblock %}
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <p style="color: aliceblue;"><b>Bestro - The Online Bestro</b></p>
+                </div>
+                <div class="col-md-4">
+                    <ul class="social-icons">
+                        <li><a rel="nofollow" href="http://www.facebook.com/templatemo" target="_parent"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a href="#"><i class="fa fa-rss"></i></a></li>
+                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <p>23, Crowne Plaza, Ahmedabad, Gujarat - 342452</p>
+                </div
+            </div>
+        </div>
+    </footer>
+
+
+    
+
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js' %}"></script>
+    <script>window.jQuery || document.write('<script src="{% static "orders/js/vendor/jquery-1.11.2.min.js"><script>');</script>
+
+    <script src="{% static 'orders/js/vendor/bootstrap.min.js' %}"></script>
+
+    <script src="{% static 'orders/js/plugins.js' %}"></script>
+    <script src="{% static 'orders/js/main.js' %}"></script>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js' %}" type="text/javascript"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        // navigation click actions 
+        $('.scroll-link').on('click', function(event){
+            event.preventDefault();
+            var sectionID = $(this).attr("data-id");
+            scrollToID('#' + sectionID, 750);
+        });
+        // scroll to top action
+        $('.scroll-top').on('click', function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop:0}, 'slow');         
+        });
+        // mobile nav toggle
+        $('#nav-toggle').on('click', function (event) {
+            event.preventDefault();
+            $('#main-nav').toggleClass("open");
+        });
+    });
+    // scroll function
+    function scrollToID(id, speed){
+        var offSet = 0;
+        var targetOffset = $(id).offset().top - offSet;
+        var mainNav = $('#main-nav');
+        $('html,body').animate({scrollTop:targetOffset}, speed);
+        if (mainNav.hasClass("open")) {
+            mainNav.css("height", "1px").removeClass("in").addClass("collapse");
+            mainNav.removeClass("open");
+        }
+    }
+    if (typeof console === "undefined") {
+        console = {
+            log: function() { }
+        };
+    }
+    </script>
+</body>
+</html>

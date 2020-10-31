@@ -1,0 +1,357 @@
+{% extends "orders/base.htm" %}
+{% load static %}
+
+{% block content %}
+
+    <link rel="stylesheet" href="http://static.sasongsmat.nu/fonts/vegetarian.css" />
+
+    <section class="page-heading">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Select Items</h1>
+                    <p>Click on Add to add items to your Order. Please click on Finalize to confirm your Order.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <table style="margin-left: -5vw;">
+        <tr>
+            <td style="width: 80%;"> 
+
+                    <section class="breakfast-menu">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-10 col-md-offset-1">
+                                    <div class="breakfast-menu-content">
+                                    <p>Filter by Category &nbsp;&nbsp;</p>
+                                    <input type="checkbox" id="Appetizers" name="Appetizers" value="Appetizers">
+                                    <label for="Appetizers">Appetizers</label>
+                                    <input type="checkbox" id="Sizzlers" name="Sizzlers" value="Sizzlers">
+                                    <label for="Sizzlers">Sizzlers</label>
+                                    <input type="checkbox" id="Pasta" name="Pasta" value="Pasta">
+                                    <label for="Pasta">Pasta</label>
+                                    <input type="checkbox" id="Pizza" name="Pizza" value="Pizza">
+                                    <label for="Pizza">Pizza</label>
+                                    <input type="checkbox" id="Desserts" name="Desserts" value="Desserts">
+                                    <label for="Desserts">Desserts</label>
+                                    <input type="checkbox" id="Combos" name="Combos" value="Combos">
+                                    <label for="Combos">Combos</label>
+                                    &nbsp;&nbsp;
+                                    <div class="btn btn-primary" onclick="filterFunctions()">Filter</div>
+                                    
+                                    {% if user.is_superuser %}
+                                    <a href="{% url 'create_item' %}"><button class="btn btn-info" style="margin-left: 20vw;">Create New Item</button></a>
+                                    {% endif %}
+
+                                    </div>
+                                        
+                                </div>
+
+                                    
+                                    
+                                
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="breakfast-menu" name="sz">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-10 col-md-offset-1">
+                                    <div class="breakfast-menu-content">
+                                        <div class="row">
+                                            
+                                            <div class="col-md-12" style="overflow-x: scroll;">
+                                                <h2>Sizzlers</h2>
+
+                                                    {% for item in sz_items %}
+                                                    <div class="food-item col-md-4">
+                                                        <div class="food-item">
+                                                            <img src="{{ item.image.url }}" alt="">
+                                                            <div class="price">Rs. {{ item.rate }}</div>
+                                                            <div class="text-content">
+                                                                <p>{{ item.rating }}/5 Stars</p>
+                                                            
+                                                                <h4 name="item_name">{{ item.name }} &nbsp;  {% if not item.is_non_veg %}<span class="veg-indian-vegetarian" style="color: red;"></span>{% endif %}</h4>
+                                                                <p>{{ item.description }}</p>
+
+                                                                {% if user.is_superuser %}
+                                                                <a href="{% url 'update_item' item.id %}"><button class="btn">Update</button></a>
+                                                                {% endif %}
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {% endfor %}
+                                                    
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    
+
+                    <section class="breakfast-menu" name="ap">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-10 col-md-offset-1">
+                                    <div class="breakfast-menu-content">
+                                        <div class="row">
+                                            
+                                            <div class="col-md-12" style="overflow-x: scroll;">
+                                                <h2>Appetizers</h2>
+
+                                                    {% for item in ap_items %}
+                                                    <div class="col-md-4 mh-100">
+                                                        <div class="food-item">
+                                                            <img src="{{ item.image.url }}" alt="">
+                                                            <div class="price">Rs. {{ item.rate }}</div>
+                                                            <div class="text-content">
+                                                                <p>{{ item.rating }}/5 Stars</p>
+                                                                <h4 name="item_name">{{ item.name }} &nbsp;  {% if not item.is_non_veg %}<span class="veg-indian-vegetarian"></span>{% endif %}</h4>
+                                                                <p>{{ item.description }}</p>
+
+                                                                {% if user.is_superuser %}
+                                                                <a href="{% url 'update_item' item.id %}"><button class="btn">Update</button></a>
+                                                                {% endif %}
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                            
+                                                    {% endfor %}
+                                                    
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!--  ==== SIZZELERS ==== -->
+
+                    
+
+                    <!-- ==== PASTA ==== -->
+
+                    <section class="breakfast-menu" name="ps">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-10 col-md-offset-1">
+                                    <div class="breakfast-menu-content">
+                                        <div class="row">
+                                            
+                                            <div class="col-md-12" style="overflow-x: scroll;">
+                                                <h2>Pasta</h2>
+
+                                                    {% for item in ps_items %}
+                                                    <div class="col-md-4">
+                                                        <div class="food-item">
+                                                            <img src="{{ item.image.url }}" alt="">
+                                                            <div class="price">Rs. {{ item.rate }}</div>
+                                                            <div class="text-content">
+                                                                <p>{{ item.rating }}/5 Stars</p>
+                                                                <h4 name="item_name">{{ item.name }} &nbsp;  {% if not item.is_non_veg %}<span class="veg-indian-vegetarian" style="color: red;"></span>{% endif %}</h4>
+                                                                <p>{{ item.description }}</p>
+
+                                                                {% if user.is_superuser %}
+                                                                <a href="{% url 'update_item' item.id %}"><button class="btn">Update</button></a>
+                                                                {% endif %}
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                            
+                                                    {% endfor %}
+                                                    
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- ==== PIZZA ==== -->
+
+                    <section class="breakfast-menu" name="pz">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-10 col-md-offset-1">
+                                    <div class="breakfast-menu-content">
+                                        <div class="row">
+                                            
+                                            <div class="col-md-12" style="overflow-x: scroll;">
+                                                <h2>Pizza</h2>
+
+                                                    {% for item in pz_items %}
+                                                    <div class="col-md-4 h-100">
+                                                        <div class="food-item">
+                                                            <img src="{{ item.image.url }}" alt="">
+                                                            <div class="price">Rs. {{ item.rate }}</div>
+                                                            <div class="text-content">
+                                                                <p>{{ item.rating }}/5 Stars</p>
+                                                                <h4 name="item_name">{{ item.name }} &nbsp;  {% if not item.is_non_veg %}<span class="veg-indian-vegetarian" style="color: red;"></span>{% endif %}</h4>
+                                                                <p>{{ item.description }}</p>
+
+                                                                {% if user.is_superuser %}
+                                                                <a href="{% url 'update_item' item.id %}"><button class="btn">Update</button></a>
+                                                                {% endif %}
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                            
+                                                    {% endfor %}
+                                                    
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- ==== DESSERTS ==== -->
+
+                    <section class="breakfast-menu" name="ds">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-10 col-md-offset-1">
+                                    <div class="breakfast-menu-content">
+                                        <div class="row">
+                                            
+                                            <div class="col-md-12" style="overflow-x: scroll;">
+                                                <h2>Desserts</h2>
+
+                                                    {% for item in ds_items %}
+                                                    <div class="col-md-4">
+                                                        <div class="food-item">
+                                                            <img src="{{ item.image.url }}" alt="">
+                                                            <div class="price">Rs.{{ item.rate }}</div>
+                                                            <div class="text-content">
+                                                                <p>{{ item.rating }}/5 Stars</p>
+                                                                <h4 name="item_name">{{ item.name }} &nbsp;  {% if not item.is_non_veg %}<span class="veg-indian-vegetarian" ></span>{% endif %}</h4>
+                                                                <p>{{ item.description }}</p>
+
+                                                                {% if user.is_superuser %}
+                                                                <a href="{% url 'update_item' item.id %}"><button class="btn">Update</button></a>
+                                                                {% endif %}
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                            
+                                                    {% endfor %}
+                                                    
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- === COMBOS ===  -->
+                    <section class="breakfast-menu" name="cm">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-10 col-md-offset-1">
+                                    <div class="breakfast-menu-content">
+                                        <div class="row">
+                                            
+                                            <div class="col-md-12" style="overflow-x: scroll;">
+                                                <h2>Combos</h2>
+
+                                                    {% for item in cm_items %}
+                                                    <div class="col-md-4">
+                                                        <div class="food-item">
+                                                            <img src="{{ item.image.url }}" alt="">
+                                                            <div class="price">Rs.{{ item.rate }}</div>
+                                                            <div class="text-content">
+                                                                <p>{{ item.rating }}/5 Stars</p>
+                                                                <h4 name="item_name">{{ item.name }} &nbsp;  {% if not item.is_non_veg %}<span class="veg-indian-vegetarian" ></span>{% endif %}</h4>
+                                                                <p>{{ item.description }}</p>
+
+                                                                
+                                                                {% if user.is_superuser %}
+                                                                <a href="{% url 'update_item' item.id %}"><button class="btn">Update</button></a>
+                                                                {% endif %}
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                            
+                                                    {% endfor %}
+                                                    
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+            </td>
+
+        </tr>
+    </table>
+
+    <script>
+        function filterFunctions(){
+
+            var ap = document.getElementById("Appetizers");
+            var sz = document.getElementById("Sizzlers");
+            var ps = document.getElementById("Pasta");
+            var pz = document.getElementById("Pizza");
+            var ds = document.getElementById("Desserts");
+            var cm = document.getElementById("Combos");
+
+            if (ap.checked != true)
+                document.getElementsByName("ap")[0].style.display = "none";
+            else
+                document.getElementsByName("ap")[0].style.display = "block";
+            if (sz.checked != true)
+                document.getElementsByName("sz")[0].style.display = "none";
+            else
+                document.getElementsByName("sz")[0].style.display = "block";
+            if (ps.checked != true)
+                document.getElementsByName("ps")[0].style.display = "none";
+            else
+                document.getElementsByName("ps")[0].style.display = "block";
+            if (pz.checked != true)
+                document.getElementsByName("pz")[0].style.display = "none";
+            else
+                document.getElementsByName("pz")[0].style.display = "block";
+            if (ds.checked != true)
+                document.getElementsByName("ds")[0].style.display = "none";
+            else
+                document.getElementsByName("ds")[0].style.display = "block";
+            if (cm.checked != true)
+                document.getElementsByName("cm")[0].style.display = "none";
+            else
+                document.getElementsByName("cm")[0].style.display = "block";    
+            
+        }
+
+        function highlight() {
+                var text = parseString(document.getElementById("search").value);
+                var foodItems = document.getElementsByName("item_name");
+                for(i = 0; i <= foodItems.length; i++){
+                    if(foodItems[i].textContent == text){
+                        var offset = $(foodItems[i]).offset().top;
+                        window.scrollTo(0,offset);
+                        document.getElementById("search").value = "chutiya";
+                    }
+                }
+            }
+    </script>
+    
+
+{% endblock %}

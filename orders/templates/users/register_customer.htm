@@ -1,0 +1,108 @@
+{% extends "orders/base.htm" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+
+    <!--- ====  AUTOFILL SCRIPTS ==== -->
+    <script>
+        function fillUsername() {
+                document.getElementById('username').value = document.getElementById('email').value;    
+        }
+
+        function fillPassword() {
+                document.getElementById('password2').value = document.getElementById('password1').value;    
+        }
+    </script>
+
+    <section id="book-table">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-md-offset-2 col-sm-12">
+                    <div class="left-image">
+                        <img src="{% static 'orders/img/book_left_image.jpg' %}"" alt="">
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <div class="right-info" style="overflow: scroll;">
+                        <h4>Customer Registration</h4>
+                        
+                        <form id="form-submit" action="" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="col-md-12">
+                                <fieldset>
+                                    <input name="name" type="name" class="form-control" id="name" placeholder="Name" required>
+                                </fieldset> 
+                            </div>
+                        
+                            <div class="col-md-12">
+                                <fieldset>
+                                    <input name="email" type="email" class="form-control" id="email" placeholder="Email" required oninput="fillUsername()">
+                                </fieldset>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <fieldset>
+                                    <input name="phone" type="phone" class="form-control" id="phone" placeholder="Phone number" required>
+                                </fieldset>
+                            </div>
+
+                            <div class="col-md-6">
+                                <fieldset>
+                                    <input name="password1" type="password" class="form-control" id="password1" placeholder="Password" required oninput="fillPassword()">
+                                </fieldset>
+                            </div>
+                            <div class="col-md-12" style="display: none;">
+                                <fieldset>
+                                    <input name="password2" type="password" class="form-control" id="password2" required hidden>
+                                </fieldset>
+                            </div>
+
+                            <div class="col-md-12" style="display: none;">
+                                <fieldset>
+                                    <input name="username" type="email" class="form-control" id="username" placeholder="Email" required hidden>
+                                </fieldset>
+                            </div>
+
+                            <div class="col-md-12">
+                                <fieldset>
+                                    <input name="address" type="name" class="form-control" id="address" placeholder="Address" required>
+                                </fieldset>
+                            </div>
+                            
+                            <div class="col-md-12">
+                                <fieldset>
+                                    <input name="image" type="file" class="form-control" id="image" placeholder="Image">
+                                </fieldset>
+                            </div>
+                            
+                            <div class="col-md-12">
+                                <fieldset>
+                                    <button type="submit" id="form-submit" class="btn">Sign Up</button>
+                                </fieldset>
+                                <br>
+                            </div>
+
+                            <span>OR</span>
+
+                            <br><br>
+
+                            {% load socialaccount %}
+                                    <div class="col s12 m6 offset-m3 center-align" style="border: 2px solid; border-color: green;">
+                                        <a class="oauth-container btn darken-4 white black-text" href="{% provider_login_url 'google' %}" style="text-transform:none">
+                                            <div class="left" style="color: green;">
+                                                <img width="20px" style="margin-top:7px; margin-right:8px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+                                                Login with Google
+                                            </div>
+                                        </a>
+                                    </div>
+                              </div>
+                        
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+{% endblock content %}

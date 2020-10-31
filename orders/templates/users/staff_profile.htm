@@ -1,0 +1,67 @@
+{% extends "orders/base.htm" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+
+    <!--- ====  AUTOFILL SCRIPTS ==== -->
+    <script>
+        function fillUsername() {
+                document.getElementById('username').value = document.getElementById('email').value;    
+        }
+
+        function fillPassword() {
+                document.getElementById('password2').value = document.getElementById('password1').value;    
+        }
+    </script>
+
+    <section id="book-table">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-md-offset-2 col-sm-12">
+                    <div class="left-image">
+                        <img src="{% static 'orders/img/book_left_image.jpg' %}"" alt="">
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <div class="right-info">
+                        <h4>Profile</h4>
+
+                        <br>
+                        <img src="{{ user.staff.image.url }}" style="width: 120px; border-radius: 50%;">
+                        <br>
+
+                        <form id="form-submit" action="" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="col-md-12">
+                                <fieldset>
+                                    <input name="name" type="name" class="form-control" id="name" placeholder="Name" value="{{ user.staff.name }}" required>
+                                </fieldset> 
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <fieldset>
+                                    <input name="phone" type="phone" class="form-control" id="phone" placeholder="Phone number" value="{{ user.staff.phone }}" required>
+                                </fieldset>
+                            </div>
+                            
+                            <div class="col-md-12">
+                                <fieldset>
+                                    {{ form.image|as_crispy_field }}
+                                </fieldset>
+                            </div>
+                            
+                            <div class="col-md-12">
+                                <fieldset>
+                                    <button type="submit" id="form-submit" class="btn">Update</button>
+                                </fieldset>
+                            </div>
+                        
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+{% endblock content %}
